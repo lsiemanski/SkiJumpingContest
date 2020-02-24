@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-xs-12">
+    <span class="pull-right">
+      <button class="btn btn-primary" (click)="onSelectFirst50()">Select first 50</button>
+    </span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table table-striped text-center">
+      <thead></thead>
+      <tbody>
+        <tr
+          *ngFor="let entry of standings; let i = index;"
+          [class.info]="(appState | async).selectedJumpers.indexOf(entry.jumper) !== -1"
+          style="cursor: pointer;"
+          (click)="onRowClicked(entry.jumper)">
+          <td class="col-sm-1" style="font-weight: bold;">{{i+1}}</td>
+          <td class="col-sm-3">{{entry.jumper.getFullName()}}</td>
+          <td class="col-sm-2">
+            <img
+              src="{{entry.jumper.team.flagImagePath}}"
+              alt="{{entry.jumper.team.fullName}}"
+              style="max-width: 30px;">
+             {{entry.jumper.team.abbreviation}}
+          </td>
+          <td class="col-sm-1" style="font-weight: bold;">{{entry.points}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

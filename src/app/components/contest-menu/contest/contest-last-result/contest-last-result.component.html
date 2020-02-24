@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table">
+      <tbody>
+      <tr *ngIf="lastResult !== null">
+        <td class="col-sm-2">{{lastResult.result.jumper.getFullName()}}</td>
+        <td class="col-sm-1">
+          <img
+            [src]="lastResult.result.jumper.team.flagImagePath"
+            alt="{{lastResult.result.jumper.team.abbreviation}}"
+            style="max-height: 20px">
+        </td>
+        <td class="col-sm-1"
+            *ngFor="let note of lastResult.result.jumps[lastResult.result.jumps.length-1].notes"
+            [ngStyle]="{'text-decoration': note.accepted ? 'none' : 'line-through'}">
+          {{note.value}}
+        </td>
+        <td class="col-sm-1">{{lastResult.result.jumps[lastResult.result.jumps.length-1].length}}m</td>
+        <td class="col-sm-1" style="font-weight: bold;">{{lastResult.result.jumps[lastResult.result.jumps.length-1].totalNote}}</td>
+        <td class="col-sm-1 warning text-center" style="font-weight: bold;">{{ (lastResult | timeout:1000 | async) }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

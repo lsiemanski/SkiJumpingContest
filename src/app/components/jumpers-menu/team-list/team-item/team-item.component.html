@@ -1,0 +1,13 @@
+<a class="list-group-item clearfix list-group-item-info" (click)="onTeamClicked()" style="cursor: pointer;">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{team.fullName}}</h4>
+  </div>
+  <span class="pull-right">
+    <img [src]="team.flagImagePath" alt="{{team.abbrevation}}" style="max-width: 40px;">
+    <span class="badge" style="margin-left: 20px;">{{getSelectedJumpersCount((appState | async).selectedJumpers)}}</span>
+  </span>
+</a>
+<app-player-list
+  *ngIf="showJumperList"
+  [jumpers]="jumpers">
+</app-player-list>

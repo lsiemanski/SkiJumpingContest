@@ -1,0 +1,57 @@
+<ng-container *ngIf="(appState | async) as state">
+  <div class="row" *ngIf="state.jumperQueue.length === 0 && !state.secondSeriesStarted">
+    <button class="btn btn-primary" (click)="onSecondSeriesStart()">Start Second Series</button>
+  </div>
+  <div class="row" *ngIf="state.jumperQueue.length === 0 && state.secondSeriesStarted">
+    <button class="btn btn-primary" (click)="onEndContest()">End Contest</button>
+  </div>
+  <app-contest-info [hill]="state.hill" [nextJumper]="state.jumperQueue.length > 0 ? state.jumperQueue[0] : null"></app-contest-info>
+  <div class="row">
+    <div class="col-xs-12">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="state.jumperQueue.length > 0">
+        <div class="row">
+          <div class="col-sm-2 form-group">
+            <label for="length">Length</label>
+            <input type="number" id="length" class="form-control" name="length" ngModel required appPositiveNumber autocomplete="off" #lengthInput #length="ngModel">
+          </div>
+          <div class="col-sm-1 form-group">
+            <label for="note1">Note 1</label>
+            <input type="number" id="note1" class="form-control" name="note1" ngModel required appNote autocomplete="off" #note1="ngModel">
+          </div>
+          <div class="col-sm-1 form-group">
+            <label for="note2">Note 2</label>
+            <input type="number" id="note2" class="form-control" name="note2" ngModel required appNote autocomplete="off" #note2="ngModel">
+          </div>
+          <div class="col-sm-1 form-group">
+            <label for="note3">Note 3</label>
+            <input type="number" id="note3" class="form-control" name="note3" ngModel required appNote autocomplete="off" #note3="ngModel">
+          </div>
+          <div class="col-sm-1 form-group">
+            <label for="note4">Note 4</label>
+            <input type="number" id="note4" class="form-control" name="note4" ngModel required appNote autocomplete="off" #note4="ngModel">
+          </div>
+          <div class="col-sm-1 form-group">
+            <label for="note5">Note 5</label>
+            <input type="number" id="note5" class="form-control" name="note5" ngModel required appNote autocomplete="off" #note5="ngModel">
+          </div>
+          <div class="col-sm-1 form-group" style="vertical-align: bottom;">
+            <label style="color: white">.</label>
+            <button class="btn btn-success" type="submit" [disabled]="!f.valid">Submit</button>
+          </div>
+          <div class="col-sm-4">
+            <span class="help-block" style="color: red; font-weight: bold;"
+                  *ngIf="length.touched && !length.valid">Length must be a positive number</span>
+            <span class="help-block" style="color: red; font-weight: bold;"
+                  *ngIf="(note1.touched && !note1.valid) ||
+                         (note2.touched && !note2.valid) ||
+                         (note3.touched && !note3.valid) ||
+                         (note4.touched && !note4.valid) ||
+                         (note5.touched && !note5.valid)">Note must be in 0 to 20 range</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <app-contest-last-result [lastResult]="state.lastResult"></app-contest-last-result>
+  <app-contest-results [results]="state.results" [lastResult]="state.lastResult"></app-contest-results>
+</ng-container>

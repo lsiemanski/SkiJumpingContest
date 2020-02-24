@@ -1,0 +1,16 @@
+<a class="list-group-item clearfix"
+   *ngFor="let hill of hills"
+   (click)="onHillClicked(hill)"
+   [class.active]="(appState | async).hill === hill"
+   style="cursor: pointer;">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{hill.city}} K-{{hill.kPoint}}</h4>
+    <p>
+      {{hill.name}}<br/>
+      HS: {{hill.hillSize}}
+    </p>
+  </div>
+  <span class="pull-right">
+    <img [src]="hill.country.flagImagePath" alt="{{hill.country.abbreviation}}" style="max-width: 40px;">
+  </span>
+</a>

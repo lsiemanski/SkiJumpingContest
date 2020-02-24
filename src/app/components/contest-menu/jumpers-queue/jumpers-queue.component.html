@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-xs-5">
+    <table class="table table-striped text-center">
+      <thead style="font-weight: bold;">
+      <td class="col-sm-8">Jumper</td>
+      <td class="col-sm-4">Team</td>
+      </thead>
+      <tbody>
+      <tr *ngFor="let jumper of (appState | async).jumperQueue">
+        <td class="col-sm-8">{{jumper.getFullName()}}</td>
+        <td class="col-sm-4">
+          <img src="{{jumper.team.flagImagePath}}"
+               alt="{{jumper.team.fullName}}"
+               style="max-width: 30px;">
+          {{jumper.team.abbreviation}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

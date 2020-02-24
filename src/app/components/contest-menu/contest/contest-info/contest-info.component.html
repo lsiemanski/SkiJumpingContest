@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table table-striped text-center">
+      <thead style="font-weight: bold;">
+      <tr>
+        <td class="col-sm-4" colspan="2">Next</td>
+        <td class="col-sm-1"></td>
+        <td class="col-sm-2" scope="col">City</td>
+        <td class="col-sm-2" scope="col">Hill Name</td>
+        <td class="col-sm-1" scope="col">Country</td>
+        <td class="col-sm-1" scope="col">K-Point</td>
+        <td class="col-sm-1" scope="col">Hill Size</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <ng-container *ngIf="nextJumper !== null">
+          <td class="col-sm-3">{{ nextJumper.getFullName() }}</td>
+          <td class="col-sm-1">
+            <img
+              src="{{ nextJumper.team.flagImagePath }}"
+              alt="{{ nextJumper.team.fullName }}"
+              style="max-height: 20px;">
+            <span [textContent]="nextJumper.team.abbreviation"
+                  style="margin-left: 10px;"></span>
+          </td>
+        </ng-container>
+        <ng-container *ngIf="nextJumper === null">
+          <td class="col-sm-3"></td>
+          <td class="col-sm-1"></td>
+        </ng-container>
+        <td class="col-sm-1"></td>
+        <td class="col-sm-2">{{ hill.city }}</td>
+        <td class="col-sm-2">{{ hill.name }}</td>
+        <td class="col-sm-1">
+          <img
+            src="{{ hill.country.flagImagePath }}"
+            alt="{{ hill.country.fullName }}"
+            style="max-height: 20px;">
+          <span [textContent]="hill.country.abbreviation"
+                style="margin-left: 10px;"></span>
+        </td>
+        <td class="col-sm-1" style="font-weight: bold; color: red">{{ hill.kPoint }}</td>
+        <td class="col-sm-1" style="font-style: italic;">{{ hill.hillSize }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

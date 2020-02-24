@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-xs-12">
+    <span class="pull-left">
+      <button class="btn btn-primary" (click)="onStartContest()">Start contest</button>
+    </span>
+    <span class="pull-right">
+      <h3>Total selected: <span class="label label-warning">{{(appState | async).selectedJumpers.length}}</span></h3>
+    </span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="nav nav-tabs">
+      <li role="presentation" routerLinkActive="active">
+        <a routerLink="./teams">Teams</a>
+      </li>
+      <li role="presentation" routerLinkActive="active">
+        <a routerLink="./standings">Standings</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <router-outlet></router-outlet>
+  </div>
+</div>

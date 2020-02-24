@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-xs 12">
+    <table class="table table-striped text-center">
+      <thead style="font-weight: bold;">
+      <tr>
+        <td class="col-sm-1" scope="col">#</td>
+        <td class="col-sm-3" scope="col">Jumper</td>
+        <td class="col-sm-1" scope="col">Team</td>
+        <td class="col-sm-2" scope="col" colspan="2">Jump 1</td>
+        <td class="col-sm-2" scope="col" colspan="2">Jump 2</td>
+        <td class="col-sm-1 right" scope="col">Total</td>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let result of results">
+        <tr *appCurrentJumper="result.result.jumper === lastResult.result.jumper">
+          <td class="col-sm-1" >{{result.rank}}</td>
+          <td class="col-sm-3">{{result.result.jumper.name}} {{result.result.jumper.surname}}</td>
+          <td class="col-sm-1">
+            <img
+              [src]="result.result.jumper.team.flagImagePath"
+              alt="{{result.result.jumper.team.abbreviation}}"
+              style="max-height: 20px">
+          </td>
+          <td class="col-sm-1">{{result.result.jumps[0].length}}m</td>
+          <td class="col-sm-1">{{result.result.jumps[0].totalNote}}</td>
+          <td class="col-sm-1" [textContent]="result.result.jumps.length > 1 ? result.result.jumps[1].length + 'm' : ''"></td>
+          <td class="col-sm-1" [textContent]="result.result.jumps.length > 1 ? result.result.jumps[1].totalNote : ''"></td>
+          <td class="col-sm-1 right" style="font-weight: bold">{{result.result.getTotalNote()}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
